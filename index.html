@@ -15,6 +15,17 @@
     <title>CrudVuePhp</title>
     <!-- Favicon.ico -->
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+      /*Registered modal form design here */
+      #overlay{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.6);
+      }
+    </style>
   </head>
   <body>
     <div id="app">
@@ -29,27 +40,12 @@
       </div>
       <div class="container">
         <div class="row mt-3">
-          <div class="col-lg-6">
+          <div class="col-12 col-sm-6">
             <h3 class="text-info">Registered Users</h3>
-            <!-- <form>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-              </div>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form> -->
           </div>
-          <div class="col-lg-6">
+          <div class="col-12 col-sm-6">
             <button class="btn btn-info float-right">
-              <i class="fas fa-user">&nbsp;&nbsp;Add New User</i>
+              <i class="fas fa-user" @click="showAddModal=true">&nbsp;&nbsp;Add New User</i>
             </button>
           </div>
         </div>
@@ -81,35 +77,117 @@
                   <td>Mark</td>
                   <td>Ottomdo@gmail.com</td>
                   <td>+88014572638</td>
-                  <td><a href="" class="text-success"><i class="fas fa-edit"></i></a></td>
-                  <td><a href="" class="text-danger"><i class="fas fa-trash-alt"></i></a></td>
+                  <td><a href="#" class="text-success" @click="editAddModal=true"><i class="fas fa-edit"></i></a></td>
+                  <td><a href="#" class="text-danger" @click="editDeleteModal=true"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="text-center">
                   <th scope="row">1</th>
                   <td>Mark</td>
                   <td>Ottomdo@gmail.com</td>
                   <td>+88014572638</td>
-                  <td><a href="" class="text-success"><i class="fas fa-edit"></i></a></td>
-                  <td><a href="" class="text-danger"><i class="fas fa-trash-alt"></i></a></td>
+                  <td><a href="#" class="text-success" @click="editAddModal=true"><i class="fas fa-edit"></i></a></td>
+                  <td><a href="#" class="text-danger" @click="editDeleteModal=true"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="text-center">
                   <th scope="row">1</th>
                   <td>Mark</td>
                   <td>Ottomdo@gmail.com</td>
                   <td>+88014572638</td>
-                  <td><a href="" class="text-success"><i class="fas fa-edit"></i></a></td>
-                  <td><a href="" class="text-danger"><i class="fas fa-trash-alt"></i></a></td>
+                  <td><a href="#" class="text-success" @click="editAddModal=true"><i class="fas fa-edit"></i></a></td>
+                  <td><a href="#" class="text-danger" @click="editDeleteModal=true"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
                 <tr class="text-center">
                   <th scope="row">1</th>
                   <td>Mark</td>
                   <td>Ottomdo@gmail.com</td>
                   <td>+88014572638</td>
-                  <td><a href="" class="text-success"><i class="fas fa-edit"></i></a></td>
-                  <td><a href="" class="text-danger"><i class="fas fa-trash-alt"></i></a></td>
+                  <td><a href="#" class="text-success" @click="editAddModal=true"><i class="fas fa-edit"></i></a></td>
+                  <td><a href="#" class="text-danger" @click="editDeleteModal=true"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add New User Model -->
+      <div id="overlay" v-if="showAddModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="">Add New User</h5>
+                <button type="button" class="close" @click="showAddModal=false">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-4">
+              <form action="" method="post">
+                <div class="form-group">
+                  <input type="text" name="name" class="form-control" placeholder="Enter Name *" required>
+                </div>
+                <div class="form-group">
+                  <input type="email" name="email" class="form-control" placeholder="Enter E-mail *" required>
+                </div>
+                <div class="form-group">
+                  <input type="tel" name="phone" class="form-control" placeholder="Enter Phone Number *" required>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-info btn-block" @click="showAddModal=false">Add User</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit User Model -->
+      <div id="overlay" v-if="editAddModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="">Edit User</h5>
+                <button type="button" class="close" @click="editAddModal=false">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-4">
+              <form action="" method="post">
+                <div class="form-group">
+                  <input type="text" name="name" class="form-control" placeholder="Enter Name *" required>
+                </div>
+                <div class="form-group">
+                  <input type="email" name="email" class="form-control" placeholder="Enter E-mail *" required>
+                </div>
+                <div class="form-group">
+                  <input type="tel" name="phone" class="form-control" placeholder="Enter Phone Number *" required>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-info btn-block" @click="editAddModal=false">Update User</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit User Model -->
+      <div id="overlay" v-if="editDeleteModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="">Delete User</h5>
+                <button type="button" class="close" @click="editDeleteModal=false">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-4">
+              <h4 class="text-danger">Are you sure want to delete this user ?</h4>
+              <h5 class="">You are deleting "dfkjdf"</h5>
+              <hr>
+              <button class="btn btn-danger" @click="editDeleteModal=false">Yes</button>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-success" @click="editDeleteModal=false">No</button>
+            </div>
           </div>
         </div>
       </div>
