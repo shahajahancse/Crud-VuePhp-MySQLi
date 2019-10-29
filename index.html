@@ -77,8 +77,8 @@
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
                   <td>{{ user.phone }}</td>
-                  <td><a href="#" class="text-success" @click="editAddModal=true"><i class="fas fa-edit"></i></a></td>
-                  <td><a href="#" class="text-danger" @click="editDeleteModal=true"><i class="fas fa-trash-alt"></i></a></td>
+                  <td><a href="#" class="text-success" @click="editAddModal=true; selectUser(user);"><i class="fas fa-edit"></i></a></td>
+                  <td><a href="#" class="text-danger" @click="editDeleteModal=true; selectUser(user);"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
               </tbody>
             </table>
@@ -129,16 +129,16 @@
             <div class="modal-body p-4">
               <form action="" method="post">
                 <div class="form-group">
-                  <input type="text" name="name" class="form-control" placeholder="Enter Name *" required>
+                  <input type="text" name="name" class="form-control" v-model="currentUser.name" required>
                 </div>
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control" placeholder="Enter E-mail *" required>
+                  <input type="email" name="email" class="form-control" v-model="currentUser.email" required>
                 </div>
                 <div class="form-group">
-                  <input type="tel" name="phone" class="form-control" placeholder="Enter Phone Number *" required>
+                  <input type="tel" name="phone" class="form-control" v-model="currentUser.phone" required>
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-info btn-block" @click="editAddModal=false">Update User</button>
+                  <button class="btn btn-info btn-block" @click="editAddModal=false; updateUser();">Update User</button>
                 </div>
               </form>
             </div>
