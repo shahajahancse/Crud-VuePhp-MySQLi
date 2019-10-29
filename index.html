@@ -92,23 +92,23 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="">Add New User</h5>
-                <button type="button" class="close" @click="showAddModal=false">
+                <button type="button" class="close" @click="showAddModal=false;">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body p-4">
               <form action="" method="post">
                 <div class="form-group">
-                  <input type="text" name="name" class="form-control" placeholder="Enter Name *" required>
+                  <input type="text" name="name" class="form-control" placeholder="Enter Name *" required v-model="newUser.name">
                 </div>
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control" placeholder="Enter E-mail *" required>
+                  <input type="email" name="email" class="form-control" placeholder="Enter E-mail *" required v-model="newUser.email">
                 </div>
                 <div class="form-group">
-                  <input type="tel" name="phone" class="form-control" placeholder="Enter Phone Number *" required>
+                  <input type="tel" name="phone" class="form-control" placeholder="Enter Phone Number *" required v-model="newUser.phone">
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-info btn-block" @click="showAddModal=false">Add User</button>
+                  <button class="btn btn-info btn-block" @click="showAddModal=false; addUser();">Add User</button>
                 </div>
               </form>
             </div>
