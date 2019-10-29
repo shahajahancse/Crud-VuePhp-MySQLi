@@ -108,7 +108,7 @@
                   <input type="tel" name="phone" class="form-control" placeholder="Enter Phone Number *" required v-model="newUser.phone">
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-info btn-block" @click="showAddModal=false; addUser();">Add User</button>
+                  <button class="btn btn-info btn-block" @click="showAddModal=false; addUser(); clearMsg();">Add User</button>
                 </div>
               </form>
             </div>
@@ -138,7 +138,7 @@
                   <input type="tel" name="phone" class="form-control" v-model="currentUser.phone" required>
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-info btn-block" @click="editAddModal=false; updateUser();">Update User</button>
+                  <button class="btn btn-info btn-block" @click="editAddModal=false; updateUser(); clearMsg();">Update User</button>
                 </div>
               </form>
             </div>
@@ -146,7 +146,7 @@
         </div>
       </div>
 
-      <!-- Edit User Model -->
+      <!-- Delete User Model -->
       <div id="overlay" v-if="editDeleteModal">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -158,9 +158,9 @@
             </div>
             <div class="modal-body p-4">
               <h4 class="text-danger">Are you sure want to delete this user ?</h4>
-              <h5 class="">You are deleting "dfkjdf"</h5>
+              <h5 class="">You are deleting '{{ currentUser.name }}'</h5>
               <hr>
-              <button class="btn btn-danger" @click="editDeleteModal=false">Yes</button>
+              <button class="btn btn-danger" @click="editDeleteModal=false; deleteUser(); clearMsg();">Yes</button>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <button class="btn btn-success" @click="editDeleteModal=false">No</button>
             </div>

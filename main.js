@@ -62,8 +62,27 @@ var app = new Vue({
   			}
   		});
   	},
+  	// here delete user
+  	deleteUser(){
+  		var formData = app.toFormData(app.currentUser);
+  		axios.post("http://127.0.0.1/Crud-vue-php/db.php?action=delete", formData).then(function(response) {
+  			app.currentUser = {};
+  			if (response.data.error) {
+  				app.errorMsg = response.data.message;
+  			}
+  			else
+  			{
+  				app.successMsg = response.data.message;
+  				app.getAllUsers();
+  			}
+  		});
+  	},
   	selectUser(user){
   		app.currentUser = user;
+  	},
+  	clearMsg(){   // clear message
+  		app.errorMsg = "";
+  		app.successMsg = "";
   	}
   }
 });
